@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lottery Ticket</title>
+
+<link rel="stylesheet" type="text/css" href="lottoticket.css">
+
+<script>
+
+function play_scratch(){
+    var audio = document.getElementById("audio_scratch");
+    audio.play();
+}
+
+function play_buy(){
+    var audio = document.getElementById("audio_buy");
+    audio.play();
+}
+
+function play_win(){
+    var audio = document.getElementById("audio_win");
+    audio.play();
+}	
+
+
+function play_walldown(){
+    var audio = document.getElementById("audio_walldown");
+    audio.play();
+}
+
+function play_reward(){
+    var audio = document.getElementById("audio_reward");
+    audio.play();
+}	
+
+function showResultSlideDown(match) {
+
+  var elem = document.getElementById("number-box0");   
+  var pos = -300;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 0) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + 'px'; 
+      elem.style.bottom = pos + 'px'; 
+    }
+  }
+  
+  setTimeout(play_walldown, 2000);
+
+  if (match != 0)  
+  {
+  setTimeout(play_reward, 3000);  
+  }
+    
+  bridge2Canvas.drawImage(buyticketbtn, 150, 850, 348, 84);   
+  bridgeCanvas.drawImage(buyticketbtn, 150, 850, 348, 84); 
+   
+}
+
+function showResultSlideUp() {
+
+
+  var elem = document.getElementById("number-box0");   
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == -300) {
+      clearInterval(id);
+    } else {
+      pos--; 
+      elem.style.top = pos + 'px'; 
+      elem.style.bottom = pos + 'px'; 
+    }
+  }
+
+}
+
+function buyNewTicket() {
+
+  location.reload();
+
+}
+
+</script>
+</head>
+<body>
+
+<canvas id="bridge" width="640" height="960"></canvas>
+
+<canvas id="bridge2" width="640" height="960"></canvas>
+
+<div id="number-box0"></div>
+
+<div id="price-image0"></div>
+
+<div id="price-box0"><span class="small"> PRICE</span><br><span class="big">2€</span></div>
+
+<audio id="audio_win" src="win_tone.mp3" type="audio/mpeg"></audio>
+
+<audio id="audio_buy" src="buy_tone.mp3" type="audio/mpeg"></audio>
+
+<audio id="audio_scratch" src="scratch_tone.mp3" type="audio/mpeg"></audio>
+
+<audio id="audio_walldown" src="walldown_tone.mp3" type="audio/mpeg"></audio>
+
+<audio id="audio_reward" src="reward_tone.mp3" type="audio/mpeg"></audio>
+
+<script src="lottoticket.js"></script>
+
+</body>
+</html>
+
+
+
+
